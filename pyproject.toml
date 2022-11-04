@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "serverless-datalake-management"
+version = "1.0.0"
+description = "Plug and play utility to monitor and alert on ETL failure"
+authors = ["Virendhar Sivaraman <virendha@amazon.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.10"
+"aws_cdk.aws_glue" = "^1.61.1"
+"aws_cdk.aws_s3_assets" = "^1.61.1"
+"aws_cdk.aws_s3_deployment" = "^1.61.1"
+"aws_cdk.core" = "^1.61.1"
+"aws_cdk.aws_kms" = "^1.61.1"
+"aws_cdk.aws_iam" = "^1.61.1"
+"aws_cdk.aws_s3" = "^1.61.1"
+"aws_cdk.aws_lambda" = "^1.62.0"
+"aws_cdk.aws_secretsmanager" = "^1.62.0"
+"aws_cdk.aws_events" = "^1.63.0"
+"aws_cdk.aws_events_targets" = "^1.63.0"
+"aws_cdk.aws_lambda_event_sources" = "^1.63.0"
+"aws_cdk.aws_cloudtrail" = "^1.64.0"
+"aws_cdk.aws_athena" = "^1.66.0"
+"aws-cdk.aws-lambda-destinations" = "^1.73.0"
+awswrangler = "^2.6.0"
+requests = "^2.25.0"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.902"
+pylint = "^2.6.0"
+black = "^21.6b0"
+boto3 = "^1.17.95"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+line-length = 100
+skip-string-normalization = true
+
