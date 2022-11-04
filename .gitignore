@@ -149,13 +149,6 @@ cython_debug/
 *.zip
 vendored/
 
-# cli output
-cli/stream_generator/stream_generator/output.json
-cli/stream_generator/backup/*.ddb.prod
-
-# backfill script output
-**/res.txt
-
 # poetry output
 **/requirements-poetry.txt
 
