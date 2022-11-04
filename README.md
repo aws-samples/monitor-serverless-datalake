@@ -45,3 +45,7 @@ The Cloud Deployment Kit(CDK) has been provided to deploy the solution. Follow t
     - Update `ACCOUNT` & `REGION` in `./cdk/config.py` 
     - cd cdk
     - cdk deploy --all  --profile <profile_name>
+
+## Note
+Remember to destroy the stacks as these will incur costs
+    - cdk destroy --all  --profile <profile_name>
