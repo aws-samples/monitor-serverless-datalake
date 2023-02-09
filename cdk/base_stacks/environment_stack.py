@@ -1,9 +1,10 @@
 """Base environment to manage AWS resources for the serverless datalake"""
-from aws_cdk import aws_ec2 as ec2, aws_ssm as ssm, aws_s3 as s3, core
+from aws_cdk import aws_ec2 as ec2, aws_ssm as ssm, aws_s3 as s3, Stack, RemovalPolicy, Duration
+from constructs import Construct
 import config as cf
 
 
-class DataLakeEnvironmentStack(core.Stack):
+class DataLakeEnvironmentStack(Stack):
     """
     Stack to provision the environment following for the stateless data lake,
         - Networking
@@ -11,14 +12,14 @@ class DataLakeEnvironmentStack(core.Stack):
         -
     """
 
-    def __init__(self, scope: core.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Networking
         self.vpc = ec2.Vpc(
             self,
             cf.SM_VPC_NAME,
-            cidr=cf.SM_VPC_CIDR,
+            ip_addresses=ec2.IpAddresses.cidr(cf.SM_VPC_CIDR),
             max_azs=1,
             enable_dns_support=True,
             enable_dns_hostnames=True,
@@ -65,6 +66,62 @@ class DataLakeEnvironmentStack(core.Stack):
             string_value=self.sg_outbound_only.security_group_id,
         )
 
+        # S3
+
+        landing_bucket = s3.Bucket(
+            self,
+            id=f"s3-{cf.S3_LANDING_BUCKET}",
+            bucket_name=cf.S3_LANDING_BUCKET,
+            encryption=s3.BucketEncryption.S3_MANAGED,
+            public_read_access=False,
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            removal_policy=RemovalPolicy.RETAIN,
+            versioned=True,
+            lifecycle_rules=[
+                s3.LifecycleRule(
+                    transitions=[
+                        s3.Transition(
+                            storage_class=s3.StorageClass.INTELLIGENT_TIERING,
+                            transition_after=Duration.days(0),
+                        )
+                    ],
+                    noncurrent_version_transitions=[
+                        s3.NoncurrentVersionTransition(
+                            storage_class=s3.StorageClass.INTELLIGENT_TIERING,
+                            transition_after=Duration.days(0),
+                        )
+                    ],
+                )
+            ],
+        )
+
+        processed_bucket = s3.Bucket(
+            self,
+            id=f"s3-{cf.S3_PROCESSED_BUCKET}",
+            bucket_name=cf.S3_PROCESSED_BUCKET,
+            encryption=s3.BucketEncryption.S3_MANAGED,
+            public_read_access=False,
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            removal_policy=RemovalPolicy.RETAIN,
+            versioned=True,
+            lifecycle_rules=[
+                s3.LifecycleRule(
+                    transitions=[
+                        s3.Transition(
+                            storage_class=s3.StorageClass.INTELLIGENT_TIERING,
+                            transition_after=Duration.days(0),
+                        )
+                    ],
+                    noncurrent_version_transitions=[
+                        s3.NoncurrentVersionTransition(
+                            storage_class=s3.StorageClass.INTELLIGENT_TIERING,
+                            transition_after=Duration.days(0),
+                        )
+                    ],
+                )
+            ],
+        )
+
         monitor_bucket = s3.Bucket(
             self,
             id=f"s3-{cf.S3_MONITOR_BUCKET}",
@@ -72,20 +129,20 @@ class DataLakeEnvironmentStack(core.Stack):
             encryption=s3.BucketEncryption.S3_MANAGED,
             public_read_access=False,
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            removal_policy=core.RemovalPolicy.RETAIN,
+            removal_policy=RemovalPolicy.RETAIN,
             versioned=True,
             lifecycle_rules=[
                 s3.LifecycleRule(
                     transitions=[
                         s3.Transition(
                             storage_class=s3.StorageClass.INTELLIGENT_TIERING,
-                            transition_after=core.Duration.days(0),
+                            transition_after=Duration.days(0),
                         )
                     ],
                     noncurrent_version_transitions=[
                         s3.NoncurrentVersionTransition(
                             storage_class=s3.StorageClass.INTELLIGENT_TIERING,
-                            transition_after=core.Duration.days(0),
+                            transition_after=Duration.days(0),
                         )
                     ],
                 )
