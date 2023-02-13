@@ -1,4 +1,5 @@
 """Serverless datalake monitoring constructs"""
+import json
 # pylint: disable=unused-variable, too-many-locals
 import os
 import subprocess as sp
@@ -16,7 +17,6 @@ from aws_cdk import (
 from constructs import Construct
 
 import config as cf
-
 from common.utils import select_artifacts
 
 MONITOR_LAMBDA_ASSETS = {"zips": "*.zip", "lib_dir": "libs", "monitor_lambda": "handler.py"}
@@ -35,10 +35,15 @@ class DataLakeMonitoringStack(Stack):
         monitor_table = cf.MONITOR_TABLE
 
         # Secret for Monitoring
+        secrets_kv = {
+            f"{cf.SLACK_WEBHOOK_SECRET_NAME}": "to-be-updated"
+        }
+
         monitoring_secret = secrets.Secret(
             self,
             id="monitoring-secret",
-            secret_name=cf.MONITOR_SECRET_MANAGER
+            secret_name=cf.MONITOR_SECRET_MANAGER,
+            secret_string_beta1=secrets.SecretStringValueBeta1.from_unsafe_plaintext(f"{json.dumps(secrets_kv)}")
         )
 
         # Create SNS Topic to fork out subscriptions
@@ -262,4 +267,3 @@ class DataLakeMonitoringStack(Stack):
                 ],
             )
         )
-
