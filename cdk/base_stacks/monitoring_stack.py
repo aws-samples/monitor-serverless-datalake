@@ -1,10 +1,10 @@
 """Serverless datalake monitoring constructs"""
+import json
 # pylint: disable=unused-variable, too-many-locals
 import os
 import subprocess as sp
 
 from aws_cdk import (
-    core,
     aws_lambda as lambda_,
     aws_lambda_event_sources as lambda_event_source,
     aws_events as events,
@@ -12,20 +12,20 @@ from aws_cdk import (
     aws_iam as iam,
     aws_glue as glue,
     aws_sns as sns,
-    aws_secretsmanager as secrets
+    aws_secretsmanager as secrets, Stack, Duration
 )
+from constructs import Construct
 
 import config as cf
-
 from common.utils import select_artifacts
 
 MONITOR_LAMBDA_ASSETS = {"zips": "*.zip", "lib_dir": "libs", "monitor_lambda": "handler.py"}
 
 
-class DataLakeMonitoringStack(core.Stack):
+class DataLakeMonitoringStack(Stack):
     """Construct containing resources for Data Lake monitoring"""
 
-    def __init__(self, scope: core.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         """Create construct"""
         super().__init__(scope, construct_id, **kwargs)
 
@@ -35,10 +35,15 @@ class DataLakeMonitoringStack(core.Stack):
         monitor_table = cf.MONITOR_TABLE
 
         # Secret for Monitoring
+        secrets_kv = {
+            f"{cf.SLACK_WEBHOOK_SECRET_NAME}": "to-be-updated"
+        }
+
         monitoring_secret = secrets.Secret(
             self,
             id="monitoring-secret",
-            secret_name=cf.MONITOR_SECRET_MANAGER
+            secret_name=cf.MONITOR_SECRET_MANAGER,
+            secret_string_beta1=secrets.SecretStringValueBeta1.from_unsafe_plaintext(f"{json.dumps(secrets_kv)}")
         )
 
         # Create SNS Topic to fork out subscriptions
@@ -83,7 +88,7 @@ class DataLakeMonitoringStack(core.Stack):
             },
             layers=[wrangler_layer],
             memory_size=128,
-            timeout=core.Duration.seconds(lambda_timeout_seconds),
+            timeout=Duration.seconds(lambda_timeout_seconds),
         )
 
         monitoring_secret.grant_read(monitoring_lambda)
@@ -116,7 +121,8 @@ class DataLakeMonitoringStack(core.Stack):
         # SLACK NOTIFICATION
 
         # Secret for Monitoring
-        monitor_secret = secrets.Secret.from_secret_name(
+        # monitor_secret = secrets.Secret.from_secret_name(
+        monitor_secret = secrets.Secret.from_secret_name_v2(
             self, id="monitor-stack-secret", secret_name=cf.SLACK_WEBHOOK_SECRET_NAME
         )
 
@@ -261,4 +267,3 @@ class DataLakeMonitoringStack(core.Stack):
                 ],
             )
         )
-

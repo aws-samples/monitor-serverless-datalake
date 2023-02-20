@@ -55,6 +55,12 @@ The Cloud Deployment Kit(CDK) has been provided to deploy the solution. Follow t
     - `cd cdk`
     - `cdk deploy --all  --profile <profile_name>`
 
-## Note
+
+### Dependency
+Copy data files using the below command,
+- `aws s3 cp --recursive s3://awsglue-datasets/examples/us-legislators s3://<ACCCOUNT>-<REGION>-landing/legislators --profile <profile_name>`
+Replace ACCOUNT & REGION with the AWS Account number and AWS Region where the deployment must take place.
+
+## Cleaning up
 Remember to destroy the stacks if it is not to be used. 
     - `cdk destroy --all  --profile <profile_name>`
