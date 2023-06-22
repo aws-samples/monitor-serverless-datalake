@@ -1,9 +1,8 @@
 """Constants file for resource naming and env values"""
 import os
-
-REGION = ""  # To be updated
-ACCOUNT = ""  # To be updated
-SM_VPC_CIDR = ""  # To be updated
+ACCOUNT = os.environ["ACCOUNT"]
+REGION = os.environ["REGION"]
+SM_VPC_CIDR = os.environ["SM_VPC_CIDR"]
 
 SM_VPC_NAME = "dl-vpc"
 
