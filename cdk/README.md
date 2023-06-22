@@ -23,7 +23,10 @@ For manual deployment, follow the below steps,
 1. Using Python 3.8,
     - `poetry install`
 2. Stack deployment :
-    - Update `ACCOUNT` & `REGION` in `./cdk/config.py` 
+    - Set environment variables `ACCOUNT`, `REGION` & `SM_VPC_CIDR`
+        - export ACCOUNT="<account-no>"
+        - export REGION="<region-name>" 
+        - export SM_VPC_CIDR="<cidr-range>"
     - cd cdk
     - `cdk deploy --all  --profile <profile_name>`
 
