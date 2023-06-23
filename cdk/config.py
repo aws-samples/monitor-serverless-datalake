@@ -32,7 +32,7 @@ PATH_CDK = os.path.dirname(os.path.abspath(__file__))
 PATH_ROOT = os.path.dirname(PATH_CDK)
 PATH_SRC = os.path.join(PATH_ROOT, 'src')
 
-WRANGLER_ASSET = "awswrangler-layer-2.6.0-py3.8.zip"  # this is referenced in src/datalake_monitoring/Makefile
+WRANGLER_ASSET = "awswrangler-layer-3.2.0-py3.8.zip"  # this is referenced in src/datalake_monitoring/Makefile
 
 # Crawler source data
 LEGISLATORS_PATH = "legislators"

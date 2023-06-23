@@ -154,3 +154,5 @@ vendored/
 
 # whl
 **/*.whl
+
+*node_modules/*

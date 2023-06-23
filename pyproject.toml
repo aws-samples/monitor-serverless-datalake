@@ -8,14 +8,14 @@ authors = ["Virendhar Sivaraman <virendha@amazon.com>"]
 python = ">=3.8,<3.10"
 "aws-cdk-lib" = "^2.2.0"
 "constructs" = ">=10.0.0,<11.0.0"
-awswrangler = "^3.2.1"
+awswrangler = "^3.2.0"
 requests = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^1.0.0"
 pylint = "^2.16.1"
 black = "^23.1.0"
-boto3 = "^1.26.67"
+boto3 = "^1.26.157"
 
 [build-system]
 requires = ["poetry>=0.12"]

@@ -197,18 +197,18 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "boto3"
-version = "1.26.158"
+version = "1.26.159"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "boto3-1.26.158-py3-none-any.whl", hash = "sha256:0be407c2e941b422634766c0d754132ad4d33b5d0f84d9a30426b713b31ce3ab"},
-    {file = "boto3-1.26.158.tar.gz", hash = "sha256:7f88d9403f81e6f3fc770c424f7089b15eb0553b168b1d2f979fa0d12b663b42"},
+    {file = "boto3-1.26.159-py3-none-any.whl", hash = "sha256:fe49f91e057b241b23a58c74c2f22654216788052ce95b73439fdb18bfd0e155"},
+    {file = "boto3-1.26.159.tar.gz", hash = "sha256:7694df61bd6d253d6d9db34adbcd218b8efbe7f894a4a51611f7e0587ae33218"},
 ]
 
 [package.dependencies]
-botocore = ">=1.29.158,<1.30.0"
+botocore = ">=1.29.159,<1.30.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.6.0,<0.7.0"
 
@@ -217,14 +217,14 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.29.158"
+version = "1.29.159"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
 python-versions = ">= 3.7"
 files = [
-    {file = "botocore-1.29.158-py3-none-any.whl", hash = "sha256:267d4e7f36bdb45ea696386143ca6f68a358dc4baef85894cc4d9cffe97c0cd5"},
-    {file = "botocore-1.29.158.tar.gz", hash = "sha256:2fd3b625f3d683d9dd6b400aba54d54a1e9b960b84ed07a466d25d1366e59482"},
+    {file = "botocore-1.29.159-py3-none-any.whl", hash = "sha256:86fe4641fd32dc6a5be4a289e00dc180448fc7bc37abac21bd624656985eef62"},
+    {file = "botocore-1.29.159.tar.gz", hash = "sha256:da1c61757d466b82cc89f379a50662064bcb0beb67cc6efa1fbfc9a341bd08b0"},
 ]
 
 [package.dependencies]
@@ -387,14 +387,14 @@ files = [
 
 [[package]]
 name = "constructs"
-version = "10.2.56"
+version = "10.2.57"
 description = "A programming model for software-defined state"
 category = "main"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "constructs-10.2.56-py3-none-any.whl", hash = "sha256:3794d116ea80037a7463f6f18d8083f5c83f8141e94f3cbbcd3f2e2a798ac4b6"},
-    {file = "constructs-10.2.56.tar.gz", hash = "sha256:6345d8d0c783ee7f2b82f22715f199396579a041e8f01a616d1a504e0f41700c"},
+    {file = "constructs-10.2.57-py3-none-any.whl", hash = "sha256:b9447d4c9b17e73a9301331b53071b1fcc9cb0975ed02a65a6c91e4bb4f4ccf1"},
+    {file = "constructs-10.2.57.tar.gz", hash = "sha256:b4213f81d4083403ea50ab56406f1a0597c8d7d6613bd36c3bff8b6a65fb0b6c"},
 ]
 
 [package.dependencies]
@@ -759,14 +759,14 @@ files = [
 
 [[package]]
 name = "platformdirs"
-version = "3.7.0"
+version = "3.8.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "platformdirs-3.7.0-py3-none-any.whl", hash = "sha256:cfd065ba43133ff103ab3bd10aecb095c2a0035fcd1f07217c9376900d94ba07"},
-    {file = "platformdirs-3.7.0.tar.gz", hash = "sha256:87fbf6473e87c078d536980ba970a472422e94f17b752cfad17024c18876d481"},
+    {file = "platformdirs-3.8.0-py3-none-any.whl", hash = "sha256:ca9ed98ce73076ba72e092b23d3c93ea6c4e186b3f1c3dad6edd98ff6ffcca2e"},
+    {file = "platformdirs-3.8.0.tar.gz", hash = "sha256:b0cabcb11063d21a0b261d557acb0a9d2126350e63b70cdf7db6347baea456dc"},
 ]
 
 [package.extras]
@@ -1114,4 +1114,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.10"
-content-hash = "bb4bb4347402d965b2445b937bd70569f291ad024020ba9db80aa15e270383bf"
+content-hash = "8b61c25c2f03818933fd786e3816a13a432ae2a5effeffa714d188f278f09421"
