@@ -77,6 +77,7 @@ class DataLakeEnvironmentStack(Stack):
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             removal_policy=RemovalPolicy.RETAIN,
             versioned=True,
+            enforce_ssl=True,
             lifecycle_rules=[
                 s3.LifecycleRule(
                     transitions=[
@@ -104,6 +105,7 @@ class DataLakeEnvironmentStack(Stack):
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             removal_policy=RemovalPolicy.RETAIN,
             versioned=True,
+            enforce_ssl=True,
             lifecycle_rules=[
                 s3.LifecycleRule(
                     transitions=[
@@ -131,6 +133,7 @@ class DataLakeEnvironmentStack(Stack):
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             removal_policy=RemovalPolicy.RETAIN,
             versioned=True,
+            enforce_ssl=True,
             lifecycle_rules=[
                 s3.LifecycleRule(
                     transitions=[
