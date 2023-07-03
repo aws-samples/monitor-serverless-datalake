@@ -127,6 +127,7 @@ class ProcessEvent(object):
             url=self.slack_webhook,
             data=json.dumps(self.message),
             headers={"Content-Type": "application/json"},
+            timeout=5
         )
         return r.status_code
 
@@ -234,7 +235,7 @@ class ProcessEvent(object):
         """Assigns Glue data types for data from panda dataframe """
         return {
             col.lower(): "string"
-            for col, _ in df.dtypes.iteritems()
+            for col, _ in df.dtypes.items()
         }
 
     def put_item_athena(self) -> None:
@@ -254,7 +255,6 @@ class ProcessEvent(object):
             partition_cols=table_partition,
             dtype=column_types,
             compression="snappy",
-            description="todo",
             mode="append",
         )
 
