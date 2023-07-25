@@ -6,7 +6,7 @@ bundle:
 	cat requirements-poetry.txt
 	pip install -r requirements-poetry.txt --target ./python
 	rm -rf ./python/*dist-info*
-	curl -L -C - -o ./libs/awswrangler-layer-3.2.0-py3.8.zip https://github.com/awslabs/aws-data-wrangler/releases/download/3.2.0/awswrangler-layer-3.2.0-py3.8.zip
+	curl -L -C - -o ./libs/awswrangler-layer-3.2.0-py3.10.zip https://github.com/awslabs/aws-data-wrangler/releases/download/3.2.0/awswrangler-layer-3.2.0-py3.10.zip
 
 
 .PHONY: clean
