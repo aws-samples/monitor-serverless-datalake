@@ -71,7 +71,7 @@ class DataLakeMonitoringStack(Stack):
             self,
             id="datalake-monitoring-lambda",
             handler="handler.handler",
-            runtime=lambda_.Runtime.PYTHON_3_8,
+            runtime=lambda_.Runtime.PYTHON_3_10,
             code=lambda_.Code.from_asset(
                 path=path_monitoring_lambda,
                 exclude=select_artifacts(

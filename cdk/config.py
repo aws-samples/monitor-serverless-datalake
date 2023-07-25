@@ -7,6 +7,7 @@ SM_VPC_CIDR = os.environ["SM_VPC_CIDR"]
 SM_VPC_NAME = "dl-vpc"
 
 CDK_ENV = {"account": ACCOUNT, "region": REGION}
+GLUE_VERSION = "4.0"
 
 # SECRETS
 MONITOR_SECRET_MANAGER = "datalake-monitoring"
@@ -32,7 +33,7 @@ PATH_CDK = os.path.dirname(os.path.abspath(__file__))
 PATH_ROOT = os.path.dirname(PATH_CDK)
 PATH_SRC = os.path.join(PATH_ROOT, 'src')
 
-WRANGLER_ASSET = "awswrangler-layer-3.2.0-py3.8.zip"  # this is referenced in src/datalake_monitoring/Makefile
+WRANGLER_ASSET = "awswrangler-layer-3.2.0-py3.10.zip"  # this is referenced in src/datalake_monitoring/Makefile
 
 # Crawler source data
 LEGISLATORS_PATH = "legislators"

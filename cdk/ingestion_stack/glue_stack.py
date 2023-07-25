@@ -217,7 +217,7 @@ class DataLakeGlueIngestionStack(Stack):
             ),
             role=legislators_process_job_role.role_arn,
             description="Glue Job for processing US Legislators data",
-            glue_version="2.0",
+            glue_version=cf.GLUE_VERSION,
             name=legislators_process_glue_job_name,
             default_arguments={
                 "--landing_s3": cf.S3_LANDING_BUCKET,
@@ -268,7 +268,7 @@ class DataLakeGlueIngestionStack(Stack):
             ),
             role=sample_failure_glue_job_role.role_arn,
             description="Glue Job for processing US Legislators data",
-            glue_version="2.0",
+            glue_version=cf.GLUE_VERSION,
             name=sample_failure_glue_job_name,
             number_of_workers=2,
             timeout=10,

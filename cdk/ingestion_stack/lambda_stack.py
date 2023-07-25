@@ -43,7 +43,7 @@ class DataLakeLambdaIngestionStack(Stack):
                 self,
                 id=lambda_name,
                 handler=f"{lambda_name}.handler",
-                runtime=lambda_.Runtime.PYTHON_3_8,
+                runtime=lambda_.Runtime.PYTHON_3_10,
                 code=lambda_.Code.from_asset(
                     path=ingestion_lambda,
                     exclude=select_artifacts(
